@@ -1,7 +1,7 @@
 // --- Global Constants & Configs ---
-const DEFAULT_BACKGROUND_IMAGE_URL = 'https://static.tildacdn.com/tild3364-3164-4862-b135-396663353236/Background.png';
-const LOGO_IMAGE_URL = 'https://static.tildacdn.com/tild3239-6438-4235-a166-343836353232/Logo.svg';
-const HOLO_IMAGE_URL = 'https://static.tildacdn.com/tild3161-6561-4931-a566-323966633562/Holo_1.png';
+const DEFAULT_BACKGROUND_IMAGE_URL = '/img/background.png';
+const LOGO_IMAGE_URL = '/img/logo.svg';
+const HOLO_IMAGE_URL = '/img/holo.png';
 const STAMP_IMAGE_URL = '/img/stamp.png';
 
 const A4_WIDTH_PX = 842;
