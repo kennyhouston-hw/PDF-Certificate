@@ -1,0 +1,66 @@
+{
+    "Графический дизайн в редакторе FIGMA": {
+        "Начальный уровень": [
+            "основы редактора Figma",
+            "контуры, фигуры, слои",
+            "создание объемных изображений",
+            "контраст, цветовой контраст",
+            "перспективу, изометрию"
+        ],
+        "Базовый уровень": [
+            "основы создания логотипов, 3D иконок, стикерпаков",
+            "создание фирменного стиля",
+            "принципы инфографики",
+            "правила рисования веб-баннеров",
+            "основы веб-дизайна (создание лендинга)"
+        ]
+    },
+    "Веб-разработка": {
+        "Основы HTML/CSS": [
+            "Введение в HTML",
+            "Базовый CSS синтаксис",
+            "Работа с блочной моделью",
+            "Flexbox основы",
+            "Создание простых веб-страниц"
+        ],
+        "Продвинутый JavaScript": [
+            "Функции высшего порядка",
+            "Асинхронный JavaScript (Promise, Async/Await)",
+            "Работа с DOM",
+            "Модули ES6",
+            "Обработка событий"
+        ]
+    },
+    "Graphic Design in Figma": {
+        "Initial": [
+            "Figma editor basics",
+            "contours, shapes, layers",
+            "creating volumetric images",
+            "contrast, color contrast",
+            "perspective, isometry"
+        ],
+        "Basic": [
+            "basics of creating logos, 3D icons, sticker packs",
+            "creating corporate identity",
+            "principles of infographics",
+            "rules for drawing web banners",
+            "basics of web design (landing page creation)"
+        ]
+    },
+    "Web Development": {
+        "HTML/CSS Fundamentals": [
+            "Introduction to HTML",
+            "Basic CSS syntax",
+            "Working with the box model",
+            "Flexbox basics",
+            "Creating simple web pages"
+        ],
+        "Advanced JavaScript": [
+            "Higher-order functions",
+            "Aysnchronous JavaScript (Promise, Async/Await)",
+            "Working with DOM",
+            "ES6 Modules",
+            "Event handling"
+        ]
+    }
+}
