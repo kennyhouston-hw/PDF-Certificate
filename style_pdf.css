@@ -434,13 +434,13 @@ input:checked + .slider:before {
 /* Keyframes for neural glow effect */
 @keyframes neuralGlow {
     0% {
-        box-shadow: 0 0 0px 0px rgba(10, 132, 255, 0.4);
+        box-shadow: 0 0 0px 0px rgba(10, 132, 255, 0.2);
     }
     50% {
-        box-shadow: 0 0 20px 5px rgba(10, 132, 255, 0.7);
+        box-shadow: 0 0 20px 5px rgba(10, 132, 255, 0.4);
     }
     100% {
-        box-shadow: 0 0 0px 0px rgba(10, 132, 255, 0.4);
+        box-shadow: 0 0 0px 0px rgba(10, 132, 255, 0.2);
     }
 }
 
