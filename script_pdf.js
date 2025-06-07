@@ -1,5 +1,5 @@
 // --- Global Constants & Configs ---
-const DEFAULT_BACKGROUND_IMAGE_URL = '/img/background.png';
+const DEFAULT_BACKGROUND_IMAGE_URL = 'img/background.png';
 const LOGO_IMAGE_URL = 'img/logo.svg';
 const HOLO_IMAGE_URL = 'img/holo.png';
 const STAMP_IMAGE_URL = 'img/stamp.png';
