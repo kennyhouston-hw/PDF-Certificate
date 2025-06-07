@@ -2,7 +2,7 @@
 const DEFAULT_BACKGROUND_IMAGE_URL = 'https://static.tildacdn.com/tild3364-3164-4862-b135-396663353236/Background.png';
 const LOGO_IMAGE_URL = 'https://static.tildacdn.com/tild3239-6438-4235-a166-343836353232/Logo.svg';
 const HOLO_IMAGE_URL = 'https://static.tildacdn.com/tild3161-6561-4931-a566-323966633562/Holo_1.png';
-const STAMP_IMAGE_URL = 'https://static.tildacdn.com/tild3363-3937-4735-a634-656561376366/stamp_1_1.png';
+const STAMP_IMAGE_URL = '/img/stamp.png';
 
 const A4_WIDTH_PX = 842;
 const A4_HEIGHT_PX = 595;
