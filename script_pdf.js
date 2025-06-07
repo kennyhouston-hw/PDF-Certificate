@@ -153,79 +153,86 @@ function populateCourses() {
     }
     // ... rest of the function
     courseSelect.innerHTML = `<option value="">${translations[currentLang].selectCourseOption}</option>`;
-    let coursesForLang = {};
 
-    // This logic might need to be more robust depending on how courseData keys are structured vs. language
-    if (currentLang === 'ru') {
-        coursesForLang = {
-            "Графический дизайн в редакторе FIGMA": courseData["Графический дизайн в редакторе FIGMA"],
-            "Веб-разработка": courseData["Веб-разработка"]
-        };
-    } else if (currentLang === 'en') {
-        coursesForLang = {
-            "Graphic Design in Figma": courseData["Graphic Design in Figma"],
-            "Web Development": courseData["Web Development"]
-        };
-    } else {
-         Object.keys(courseData).forEach(key => {
-            // Attempt a generic fallback if courses are not strictly tied to ru/en keys
-            if (courseData[key] && (key.toLowerCase().includes("figma") || key.toLowerCase().includes("web"))) {
-                coursesForLang[key] = courseData[key];
+    for (const courseId in courseData) {
+        if (courseData.hasOwnProperty(courseId) && courseData[courseId] && courseData[courseId][currentLang]) {
+            const courseInfo = courseData[courseId][currentLang];
+            if (courseInfo && courseInfo.title) {
+                const option = document.createElement('option');
+                option.value = courseId; // Use courseId as the value
+                option.textContent = courseInfo.title; // Use the localized title for display
+                courseSelect.appendChild(option);
             }
-         });
-    }
-
-    for (const courseName in coursesForLang) {
-        if (coursesForLang.hasOwnProperty(courseName)) {
-            const option = document.createElement('option');
-            option.value = courseName;
-            option.textContent = courseName;
-            courseSelect.appendChild(option);
         }
     }
 
-    const savedCourse = localStorage.getItem('selectedCourse-' + currentLang);
-    if (savedCourse && coursesForLang.hasOwnProperty(savedCourse)) {
-        courseSelect.value = savedCourse;
-    } else if (Object.keys(coursesForLang).length > 0) {
-        courseSelect.value = Object.keys(coursesForLang)[0];
+    const savedCourseId = localStorage.getItem('selectedCourse-' + currentLang);
+    // Check if savedCourseId is a valid key in the new courseData structure (i.e., it's one of the courseIds)
+    if (savedCourseId && courseData.hasOwnProperty(savedCourseId)) {
+        courseSelect.value = savedCourseId;
+    } else if (Object.keys(courseData).length > 0) {
+        // Default to the first courseId if no valid saved course or if saved course is no longer valid
+        let firstCourseId = null;
+        // Find the first courseId that actually has data for the current language
+        for (const cId in courseData) {
+            if (courseData.hasOwnProperty(cId) && courseData[cId] && courseData[cId][currentLang]) {
+                firstCourseId = cId;
+                break;
+            }
+        }
+
+        if (firstCourseId) {
+             courseSelect.value = firstCourseId;
+        } else {
+            // Fallback if no course is available for the current language
+            courseSelect.value = '';
+        }
     } else {
-        courseSelect.value = '';
+        courseSelect.value = ''; // No courses available at all
     }
     populateLevels();
 }
 
 function populateLevels() {
     const currentLang = document.querySelector('.segment-control button.active')?.dataset.lang;
-     if (!currentLang || !translations || !Object.keys(translations).length || !translations[currentLang] || !courseData || !Object.keys(courseData).length) {
+    if (!currentLang || !translations || !Object.keys(translations).length || !translations[currentLang] || !courseData || !Object.keys(courseData).length) {
         console.error("Cannot populate levels: language data or course data not loaded.");
-        if(levelSelect) levelSelect.innerHTML = '<option value="">Error loading levels</option>';
+        if (levelSelect) levelSelect.innerHTML = `<option value="">${translations[currentLang]?.selectLevelOption || 'Error loading levels'}</option>`;
         return;
     }
-    // ... rest of the function
+
     levelSelect.innerHTML = `<option value="">${translations[currentLang].selectLevelOption}</option>`;
-    const selectedCourse = courseSelect.value;
+    const selectedCourseId = courseSelect.value; // This is now courseId
+
     let levelsForCourse = {};
 
-    if (selectedCourse && courseData[selectedCourse]) {
-        levelsForCourse = courseData[selectedCourse];
+    if (selectedCourseId &&
+        courseData[selectedCourseId] &&
+        courseData[selectedCourseId][currentLang] &&
+        courseData[selectedCourseId][currentLang].levels) {
+        levelsForCourse = courseData[selectedCourseId][currentLang].levels;
+    } else {
+        // console.warn(`Levels not found for courseId: ${selectedCourseId}, lang: ${currentLang}`);
+        // No levels to populate, or data structure is unexpected.
+        // The default "Select Level" option is already set.
     }
 
     for (const levelName in levelsForCourse) {
-         if (levelsForCourse.hasOwnProperty(levelName)) {
+        if (levelsForCourse.hasOwnProperty(levelName)) {
             const option = document.createElement('option');
             option.value = levelName;
             option.textContent = levelName;
             levelSelect.appendChild(option);
         }
     }
-    const savedLevel = localStorage.getItem('selectedLevel-' + currentLang + '-' + selectedCourse);
+
+    const savedLevel = localStorage.getItem('selectedLevel-' + currentLang + '-' + selectedCourseId);
     if (savedLevel && levelsForCourse.hasOwnProperty(savedLevel)) {
         levelSelect.value = savedLevel;
     } else if (Object.keys(levelsForCourse).length > 0) {
-        levelSelect.value = Object.keys(levelsForCourse)[0];
+        levelSelect.value = Object.keys(levelsForCourse)[0]; // Default to the first level
     } else {
-        levelSelect.value = '';
+        levelSelect.value = ''; // No levels available
     }
     updateCourseAndTopicsDisplay();
 }
@@ -234,33 +241,47 @@ function updateCourseAndTopicsDisplay() {
     const currentLang = document.querySelector('.segment-control button.active')?.dataset.lang;
     if (!currentLang || !translations || !Object.keys(translations).length || !translations[currentLang] || !courseData || !Object.keys(courseData).length) {
         console.error("Cannot update display: language data or course data not loaded.");
+        // Clear relevant fields or show placeholder text
+        if (line3TextElement) line3TextElement.textContent = '';
+        if (caption2TextElement) caption2TextElement.textContent = '';
+        if (levelElement) levelElement.textContent = '';
+        if (customTextAreaElement) customTextAreaElement.innerHTML = '';
         return;
     }
-    // ... rest of the function
-    const selectedCourse = courseSelect.value;
-    const selectedLevel = levelSelect.value;
+
+    const selectedCourseId = courseSelect.value; // This is courseId
+    const selectedLevelName = levelSelect.value;   // This is levelName
     let courseText = '';
-    let topicsText = '';
+    let topicsArray = []; // Store topics as an array
 
-    if (selectedCourse) {
-        courseText = selectedCourse;
-    }
-    if (selectedCourse && selectedLevel && courseData[selectedCourse] && courseData[selectedCourse][selectedLevel]) {
-        topicsText = courseData[selectedCourse][selectedLevel].join('; ');
+    if (selectedCourseId && courseData[selectedCourseId] && courseData[selectedCourseId][currentLang]) {
+        courseText = courseData[selectedCourseId][currentLang].title || '';
+
+        if (selectedLevelName &&
+            courseData[selectedCourseId][currentLang].levels &&
+            courseData[selectedCourseId][currentLang].levels[selectedLevelName]) {
+            topicsArray = courseData[selectedCourseId][currentLang].levels[selectedLevelName] || [];
+        }
     }
 
-    if(line3TextElement) line3TextElement.textContent = courseText;
+    if (line3TextElement) line3TextElement.textContent = courseText;
+
     const caption2Prefix = translations[currentLang].caption2Prefix || "";
     const caption2Suffix = translations[currentLang].caption2Suffix || "";
-    if(caption2TextElement) caption2TextElement.textContent = `${caption2Prefix} ${selectedLevel || ''} ${caption2Suffix}`;
-    if(levelElement) levelElement.textContent = selectedLevel || (translations[currentLang].initialLevel || "Level");
+    if (caption2TextElement) caption2TextElement.textContent = `${caption2Prefix} ${selectedLevelName || ''} ${caption2Suffix}`;
+    if (levelElement) levelElement.textContent = selectedLevelName || (translations[currentLang].initialLevel || "Level");
 
-    let items = topicsText.split(';').map(item => item.trim()).filter(item => item !== '');
-    if(customTextAreaElement) customTextAreaElement.innerHTML = items.length > 0 ? `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>` : '';
+    // Populate customTextAreaElement with list items from topicsArray
+    if (customTextAreaElement) {
+        const items = topicsArray.map(item => String(item).trim()).filter(item => item !== '');
+        customTextAreaElement.innerHTML = items.length > 0 ? `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>` : '';
+    }
 
-    updateHtmlContent();
-    localStorage.setItem('selectedCourse-' + currentLang, selectedCourse);
-    localStorage.setItem('selectedLevel-' + currentLang + '-' + selectedCourse, selectedLevel);
+    updateHtmlContent(); // This call should be fine
+
+    // localStorage keys use selectedCourseId and selectedLevelName
+    localStorage.setItem('selectedCourse-' + currentLang, selectedCourseId);
+    localStorage.setItem('selectedLevel-' + currentLang + '-' + selectedCourseId, selectedLevelName);
 }
 
 // --- UI Element Updaters ---
