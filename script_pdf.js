@@ -180,7 +180,7 @@ function populateCourses() {
                 break;
             }
         }
-
+        
         if (firstCourseId) {
              courseSelect.value = firstCourseId;
         } else {
@@ -256,7 +256,7 @@ function updateCourseAndTopicsDisplay() {
 
     if (selectedCourseId && courseData[selectedCourseId] && courseData[selectedCourseId][currentLang]) {
         courseText = courseData[selectedCourseId][currentLang].title || '';
-
+        
         if (selectedLevelName &&
             courseData[selectedCourseId][currentLang].levels &&
             courseData[selectedCourseId][currentLang].levels[selectedLevelName]) {
@@ -342,13 +342,16 @@ function updateHtmlContent() {
 // --- PDF Export ---
 // (exportPdfBtn event listener - keep existing, ensure it uses global 'translations')
 if (exportPdfBtn) {
-    exportPdfBtn.addEventListener('click', async () => {
+    exportPdfBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+        console.log('Export PDF button clicked.');
+
         const currentLang = document.querySelector('.segment-control button.active')?.dataset.lang;
         if (!currentLang || !translations || !Object.keys(translations).length || !translations[currentLang]) {
             showMessageBox("Language data not loaded. Cannot export PDF.");
             return;
         }
-        // ... rest of the function
+        
         if (line2Input.value.trim() === '') {
             showMessageBox(translations[currentLang].studentNameRequired);
             return;
@@ -360,6 +363,8 @@ if (exportPdfBtn) {
         document.body.appendChild(loadingMessageDiv);
         if(htmlPageSection) htmlPageSection.classList.add('thinking-animation');
         if(a4Page) a4Page.classList.add('certificate-gradient-animation');
+        
+        console.log('Starting PDF generation process...');
 
         try {
             const minAnimationDuration = new Promise(resolve => setTimeout(resolve, 4000));
@@ -377,6 +382,7 @@ if (exportPdfBtn) {
                     if (clonedStampImage) clonedStampImage.src = STAMP_IMAGE_URL;
                 }
             });
+            console.log('Canvas created, about to generate PDF.');
             await minAnimationDuration;
 
             if(document.body.contains(loadingMessageDiv)) document.body.removeChild(loadingMessageDiv);
@@ -391,6 +397,7 @@ if (exportPdfBtn) {
             const pdf = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'px', format: [A4_WIDTH_PX, A4_HEIGHT_PX] });
             pdf.addImage(imgData, 'JPEG', 0, 0, A4_WIDTH_PX, A4_HEIGHT_PX);
             pdf.save('html_page_content.pdf');
+            console.log('PDF generation successful.');
         } catch (error) {
             if(document.body.contains(loadingMessageDiv)) document.body.removeChild(loadingMessageDiv);
             if(htmlPageSection) htmlPageSection.classList.remove('thinking-animation');
@@ -400,6 +407,7 @@ if (exportPdfBtn) {
                 a4Page.style.backgroundSize = '';
             }
             console.error('Ошибка при создании PDF:', error);
+            console.log('PDF generation failed.');
             const errPrefix = translations[currentLang]?.pdfErrorMessagePrefix || "PDF Error:";
             const errSuffix = translations[currentLang]?.pdfErrorMessageSuffix || "";
             showMessageBox(`${errPrefix} ${error.message}${errSuffix}`);
