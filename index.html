@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4 HTML Страница с PDF Экспортом</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://kennyhouston-hw.github.io/PDF-Certificate/style_pdf.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <div class="mb-6">
+                <div id="languageControl" class="segment-control">
+                    <button data-lang="ru" class="active">Русский</button>
+                    <button data-lang="en">English</button>
+                </div>
+            </div>
+            <h2 class="text-xl mb-4" data-lang-key="certificateDataTitle">Данные для сертификата:</h2>
+            <div class="mb-4">
+                <input type="date" id="dateInputField" class="form-input">
+            </div>
+            <div class="mb-4">
+                <label for="line2" class="block text-gray-600 text-sm  mb-2" data-lang-key="studentNameLabel">Имя ученика:</label>
+                <input type="text" id="line2" placeholder="Имя ученика" class="form-input" data-lang-placeholder-key="studentNamePlaceholder">
+            </div>
+            <div class="mb-4">
+                <label for="courseSelect" class="block text-gray-600 text-sm  mb-2" data-lang-key="courseLabel">Курс:</label>
+                <select id="courseSelect" class="form-input">
+                    <option value="" data-lang-key="selectCourseOption">Выберите курс</option>
+                </select>
+            </div>
+            <div class="mb-6">
+                <label for="levelSelect" class="block text-gray-600 text-sm  mb-2" data-lang-key="levelLabel">Уровень:</label>
+                <select id="levelSelect" class="form-input">
+                    <option value="" data-lang-key="selectLevelOption">Выберите уровень</option>
+                </select>
+            </div>
+            <div class="mb-4 flex items-center justify-between py-2 ps-3 pe-2 bg-white rounded-xl">
+                <label for="toggleStamp" class="block text-gray-600 text-sm" data-lang-key="toggleStampLabel">Показать печать:</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggleStamp">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <button id="exportPdfBtn" class="button mt-auto" data-lang-key="exportPdfButton">
+                Экспорт в PDF
+            </button>
+        </div>
+
+        <div class="html-page-section">
+            <div id="a4Page">
+                <div class="side"><div style="display:flex; gap:8px; transform: rotate(-90deg); flex-direction:column; align-items:center;"><h1 id="myh1" data-lang-key="certificateTitle">сертификат</h1><div id="level" class="mt-2" data-lang-key="initialLevel">Начальный уровень</div></div></div>
+                <img id="logoImage" src="https://static.tildacdn.com/tild3239-6438-4235-a166-343836353232/Logo.svg" alt="Logo">
+                <img id="backgroundImage" src="" alt="Background Image">
+                <p id="dateDisplay" class="date-text">2025</p>
+                <p id="caption1" class="page-text-caption" data-lang-key="caption1">СЕРТИФИКАТ ПОДТВЕРЖДАЕТ, ЧТО:</p>
+                <p id="line2Text" class="page-text"></p>
+                <p id="caption2" class="page-text-caption" data-lang-key="caption2Prefix">успешно закончил(а):</p>
+                <p id="line3Text" class="page-text"></p>
+                <p id="caption3" class="page-text-caption" data-lang-key="caption3">ИЗУЧИЛ(А) темы:</p>
+                <div id="customTextArea" class="page-text"></div>
+                <p id="ceo" class="page-text" data-lang-key="ceo">Винников Константин Владимирович</p>
+                <p id="ceo-caption" data-lang-key="ceoCaption">Директор ООО «Онлайн-школа программирования»</p>
+                <p id="text-xxs" data-lang-key="footerText">ООО «Онлайн-школа программирования» · ОГРН 1186952015645 · Образовательная лицензия Л035-01257-69/00191630 </p>
+                <img id="holoImage" src="https://static.tildacdn.com/tild3161-6561-4931-a566-323966633562/Holo_1.png" alt="holo">
+                <img id="stampImage" src="https://static.tildacdn.com/tild3363-3937-4735-a634-656561376366/stamp_1_1.png" alt="stamp">
+            </div>
+        </div>
+    </div>
+
+    <div id="messageBox" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+            <p id="messageBoxText" class="text-lg mb-4"></p>
+            <button id="messageBoxCloseBtn" class="button bg-blue-500 hover:bg-blue-600" data-lang-key="okButton">ОК</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://kennyhouston-hw.github.io/PDF-Certificate/script_pdf.js"></script>
+</body>
+</html>
