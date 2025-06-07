@@ -1,8 +1,8 @@
 // --- Global Constants & Configs ---
 const DEFAULT_BACKGROUND_IMAGE_URL = '/img/background.png';
-const LOGO_IMAGE_URL = '/img/logo.svg';
-const HOLO_IMAGE_URL = '/img/holo.png';
-const STAMP_IMAGE_URL = '/img/stamp.png';
+const LOGO_IMAGE_URL = 'img/logo.svg';
+const HOLO_IMAGE_URL = 'img/holo.png';
+const STAMP_IMAGE_URL = 'img/stamp.png';
 
 const A4_WIDTH_PX = 842;
 const A4_HEIGHT_PX = 595;
