@@ -180,7 +180,7 @@ function populateCourses() {
                 break;
             }
         }
-        
+
         if (firstCourseId) {
              courseSelect.value = firstCourseId;
         } else {
@@ -256,7 +256,7 @@ function updateCourseAndTopicsDisplay() {
 
     if (selectedCourseId && courseData[selectedCourseId] && courseData[selectedCourseId][currentLang]) {
         courseText = courseData[selectedCourseId][currentLang].title || '';
-        
+
         if (selectedLevelName &&
             courseData[selectedCourseId][currentLang].levels &&
             courseData[selectedCourseId][currentLang].levels[selectedLevelName]) {
@@ -351,7 +351,7 @@ if (exportPdfBtn) {
             showMessageBox("Language data not loaded. Cannot export PDF.");
             return;
         }
-        
+
         if (line2Input.value.trim() === '') {
             showMessageBox(translations[currentLang].studentNameRequired);
             return;
@@ -363,7 +363,7 @@ if (exportPdfBtn) {
         document.body.appendChild(loadingMessageDiv);
         if(htmlPageSection) htmlPageSection.classList.add('thinking-animation');
         if(a4Page) a4Page.classList.add('certificate-gradient-animation');
-        
+
         console.log('Starting PDF generation process...');
 
         try {
