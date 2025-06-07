@@ -1,0 +1,464 @@
+body {
+    font-family: 'Manrope', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f5f6f7;
+    /* Светлый фон */
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 32px;
+}
+@media (min-width: 1024px) {
+    .container {
+        flex-direction: row;
+    }
+}
+.input-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    width: 360px; /* Зададим минимальную ширину для секции ввода */
+    border-radius: 16px;
+    background-color: #f8fafc;
+}
+.html-page-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 16px;
+    background-color: #f8fafc;
+    /* Added for animation */
+    transition: box-shadow 0.3s ease-in-out;
+}
+/* Стили для имитации страницы A4 */
+#a4Page {
+    position: relative;
+    /* Важно для абсолютного позиционирования дочерних элементов */
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    /* Скрывает содержимое, выходящее за пределы */
+    /* Размеры A4 в ландшафтной ориентации */
+    width: 842px;
+    /* A4_WIDTH_PX */
+    height: 595px;
+    /* A4_HEIGHT_PX */
+    transform-origin: top left;
+    /* Центр трансформации для масштабирования */
+    /* Добавлен переход для background-image, чтобы анимация исчезала плавнее */
+    transition: background-image 0.5s ease-in-out;
+}
+/* Фоновое изображение для A4 страницы */
+#backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    width: calc(100% - 200px);
+    height: 100%;
+    object-fit: cover;
+    /* Заполнение всей области, сохраняя пропорции */
+    z-index: 0;
+    /* Фон должен быть сзади */
+}
+/* Стили для текстовых элементов на странице */
+.page-text {
+    position: absolute;
+    z-index: 1; /* Текст должен быть поверх фона */
+    color: #262626;
+    /* Темно-серый цвет текста */
+    word-wrap: break-word;
+    /* Перенос слов */
+    text-align: left;
+    /* Центрирование текста по умолчанию */
+    width: calc(100% - 280px);
+    /* Занимает всю ширину для центрирования */
+    left: 240px;
+    /* Отступ от левого края для центрирования */
+}
+
+.page-text-caption {
+    position: absolute;
+    z-index: 1;
+    color: rgba(9,5,36,0.6);
+    word-wrap: break-word;
+    text-align: left; /* Центрирование текста по умолчанию */
+    width: 100%;
+    /* Занимает всю ширину для центрирования */
+    left: 240px;
+    font-size: 10px;
+    line-height: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: calc(100% - 280px);
+    /* Занимает всю ширину для центрирования */
+}
+
+.date-text {
+    font-size: 12px;
+    line-height: 20px;
+    right:40px;
+    text-align: right;
+    z-index: 1;
+    position: absolute;
+}
+
+.text-2xl {
+    font-size:24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+#caption1 {
+    top: 116px;
+}
+
+#caption2 {
+    top: 202px;
+}
+
+#caption3 {
+    top: 274px;
+}
+
+#dateDisplay {
+    top:40px;
+}
+
+#line2Text {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 32px;
+    top: 136px;
+}
+#line3Text {
+    font-size: 18px;
+    line-height: 20px;
+    top: 222px;
+}
+#customTextArea {
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+    top: 294px;
+    left: 240px;
+    width: calc(100% - 280px);
+}
+/* Стили для списка внутри #customTextArea */
+#customTextArea ul {
+    list-style-type: none;
+    /* Удаляем стандартные маркеры */
+    padding: 0;
+    margin: 0;
+}
+#customTextArea li {
+    position: relative;
+    /* Для позиционирования псевдоэлемента ::before */
+    padding-left: 1em;
+    /* Отступ для кастомного маркера */
+    margin-left: 0;
+    line-height: inherit;
+    font-size: inherit;
+}
+#customTextArea li::before {
+    content: "•";
+    /* Символ кастомного маркера */
+    position: absolute;
+    left: 0;
+    /* Позиционируем маркер в начале отступа */
+    top: 0;
+    /* Выравниваем по верху текста */
+    color: #262626;
+    /* Цвет маркера */
+    font-weight: bold;
+    /* Делаем маркер более заметным */
+    line-height: inherit;
+    /* Наследуем line-height для правильного вертикального выравнивания */
+}
+
+input[type="text"], input[type="number"], input[type="date"], textarea, select {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6; /* Синяя рамка при фокусе */
+}
+/* Custom styles for select arrow */
+select {
+    appearance: none;
+    /* Скрываем стандартную стрелку в Chrome/Firefox/Safari */
+    -webkit-appearance: none;
+    /* Для старых версий Webkit */
+    -moz-appearance: none;
+    /* Для Firefox */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A5568'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    /* Кастомная SVG стрелка */
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center; /* Позиция стрелки */
+    background-size: 1.5em;
+    /* Размер стрелки */
+    padding-right: 2.5rem;
+    /* Отступ справа для стрелки */
+}
+select::-ms-expand {
+    display: none;
+    /* Скрываем стандартную стрелку в Edge/IE */
+}
+.button {
+    padding: 12px 20px;
+    background-color: #0A84FF; /* Синяя кнопка */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
+.button:hover {
+    background-color: #2563eb;
+    /* Темнее синий при наведении */
+    transform: translateY(-1px);
+}
+.button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+.coord-inputs > div {
+    flex: 1;
+}
+
+.side {
+    position: absolute;
+    z-index: 1;
+    top:0;
+    left:0;
+    display: flex;
+    width: 200px;
+    height: 100%;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    background:#2D2F97;
+}
+#myh1 {
+    font-size:48px;
+    line-height:48px;
+    z-index:1;
+    color:#fff;
+    text-transform:uppercase;
+    letter-spacing:5px;
+}
+
+#level {
+    font-size:14px;
+    line-height:20px;
+    z-index:1;
+    letter-spacing:2px;
+    text-transform: uppercase;
+    color:#fff;
+}
+
+/* Styles for logo and CEO name */
+#logoImage {
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    left: 240px;
+    width: 129px;
+    height: auto;
+}
+
+#ceo {
+    position: absolute;
+    z-index: 1;
+    bottom: 84px;
+    left: 240px;
+    font-size: 12px;
+    line-height:12px;
+    width: auto;
+    letter-spacing:0.15px;
+}
+#ceo-caption {
+    position: absolute;
+    z-index: 1;
+    bottom: 68px;
+    left: 240px;
+    font-size: 10px;
+    line-height:12px;
+    color:rgba(9, 5, 36, 0.60);
+    width: auto;
+    letter-spacing:0.15px;
+}
+
+#text-xxs {
+    position: absolute;
+    z-index: 1;
+    bottom: 40px;
+    left: 240px;
+    font-size: 8px;
+    line-height:8px;
+    color:rgba(9, 5, 36, 0.40);
+    width: auto;
+    letter-spacing:0.2px;
+}
+
+/* Styles for custom message box */
+#messageBox {
+    z-index: 1000;
+}
+
+#holoImage {
+    position: absolute;
+    z-index: 1;
+    bottom:70px;
+    right: 57px;
+    aspect-ratio: 1;
+    width: 88px;
+}
+
+#stampImage {
+    position: absolute;
+    z-index: 1;
+    bottom:66px;
+    right: 178px;
+    aspect-ratio: 1;
+    width: 88px;
+    /* Добавим transition для плавности, если менять display на block/none */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Styles for segmented control */
+.segment-control {
+    display: flex;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    overflow: hidden; /* Important for rounded corners */
+    width: fit-content;
+    /* Adjust width to content */
+}
+.segment-control button {
+    padding: 4px 12px;
+    border: none;
+    background-color: #fff; /* Light background for inactive */
+    color: #4a5568;
+    /* Darker text for inactive */
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+.segment-control button.active {
+    background-color: #0A84FF;
+    /* Blue for active */
+    color: white;
+}
+.segment-control button:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.segment-control button:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/* Styles for the toggle switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 24px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #34C759;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #34C759;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+}
+
+/* Keyframes for neural glow effect */
+@keyframes neuralGlow {
+    0% {
+        box-shadow: 0 0 0px 0px rgba(10, 132, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(10, 132, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 0px 0px rgba(10, 132, 255, 0.4);
+    }
+}
+
+/* Keyframes for subtle gradient flow on the A4 page */
+@keyframes subtleGradientFlow {
+    0% { background-position: -200% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+/* Class to apply thinking animation to html-page-section */
+.thinking-animation {
+    animation: neuralGlow 2s ease-in-out infinite alternate;
+}
+
+/* Class to apply the subtle gradient animation to the A4 page */
+.certificate-gradient-animation {
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(224, 231, 255, 0.5) 25%, rgba(224, 231, 255, 0.5) 75%, rgba(255, 255, 255, 0) 100%);
+    background-size: 400% 100%; /* Make it wider for the flow effect */
+    animation: subtleGradientFlow 4s linear infinite;
+    /* Match 4s timeout */
+}
