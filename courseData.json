@@ -22,14 +22,14 @@
     "en": {
       "title": "Graphic Design in Figma",
       "levels": {
-        "Initial": [
+        "Beginner level": [
           "Figma editor basics",
           "contours, shapes, layers",
           "creating volumetric images",
           "contrast, color contrast",
           "perspective, isometry"
         ],
-        "Basic": [
+        "Basic level": [
           "basics of creating logos, 3D icons, sticker packs",
           "creating corporate identity",
           "principles of infographics",
@@ -43,14 +43,14 @@
     "ru": {
       "title": "Веб-разработка",
       "levels": {
-        "Основы HTML/CSS": [
+        "Начальный уровень": [
           "Введение в HTML",
           "Базовый CSS синтаксис",
           "Работа с блочной моделью",
           "Flexbox основы",
           "Создание простых веб-страниц"
         ],
-        "Продвинутый JavaScript": [
+        "Продвинутый урвень": [
           "Функции высшего порядка",
           "Асинхронный JavaScript (Promise, Async/Await)",
           "Работа с DOM",
@@ -62,14 +62,14 @@
     "en": {
       "title": "Web Development",
       "levels": {
-        "HTML/CSS Fundamentals": [
+        "Beginner level": [
           "Introduction to HTML",
           "Basic CSS syntax",
           "Working with the box model",
           "Flexbox basics",
           "Creating simple web pages"
         ],
-        "Advanced JavaScript": [
+        "Advanced level": [
           "Higher-order functions",
           "Aysnchronous JavaScript (Promise, Async/Await)",
           "Working with DOM",
