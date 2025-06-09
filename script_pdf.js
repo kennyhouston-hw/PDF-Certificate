@@ -367,7 +367,7 @@ if (exportPdfBtn) {
         console.log('Starting PDF generation process...');
 
         try {
-            const minAnimationDuration = new Promise(resolve => setTimeout(resolve, 4000));
+            const minAnimationDuration = new Promise(resolve => setTimeout(resolve, 2000));
             const canvas = await html2canvas(a4Page, {
                 scale: 4, useCORS: true, logging: false,
                 onclone: (clonedDoc) => {
