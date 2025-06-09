@@ -39,6 +39,82 @@
       }
     }
   },
+  "scrath_coding": {
+    "ru": {
+      "title": "Программирование на языке Scratch",
+      "levels": {
+        "Подготовительный уровень": [
+          "алгоритм, переменные",
+          "координаты в 2D-плоскости",
+          "перемещения игровых объектов",
+          "управление c помощью мыши и клавиатуры"
+        ],
+        "Начальный уровень": [
+          "алгоритмы и причинно-следственные связи",
+          "циклы, условия, события, функции (блоки)",
+          "параллельное выполнение команд",
+          "создание многоуровневых игр",
+          "интерфейс и заставки"
+        ],
+        "Базовый уровень": [
+          "сложные условия и циклы",
+          "функции с аргументами",
+          "модули рисования и преобразования текста",
+          "списки"
+        ],
+        "Средний уровень": [
+          "режим на одного/двух игроков",
+          "создание эффекта 3D на плоскости",
+          "сложные игровые анимации",
+          "использование аудиоэффектов"
+        ],
+        "Продвинутый уровень": [
+          "машинное обучение с использованием веб-камеры",
+          "локальные и глобальные переменные",
+          "модуль для работы с видео, определение движения",
+          "определение положения элементов лица",
+          "создание игровых профилей"
+        ]
+      }
+    },
+    "en": {
+      "title": "Scratch programming language",
+      "levels": {
+        "Introductory level": [
+          "algorithm, variables",
+          "coordinates in 2D plane",
+          "movement of game objects",
+          "mouse and keyboard control"
+        ],
+        "Beginner level": [
+          "algorithms and cause-and-effect relationships",
+          "cycles, conditions, events, functions (blocks)",
+          "parallel execution of commands",
+          "creation of multilevel games",
+          "interface and screensavers"
+        ],
+        "Basic level": [
+          "complex conditions and cycles",
+          "functions with arguments",
+          "text drawing and transformation modules",
+          "lists"
+        ],
+        "Intermediate level": [
+          "single/two player mode",
+          "creating a 3D effect on a plane",
+          "complex game animations",
+          "use of audio effects"
+        ],
+        "Advanced level": [
+          "machine learning using webcam",
+          "local and global variables",
+          "module for working with video, motion detection",
+          "determination of the position of the face features",
+          "creating game profiles"
+        ]
+      }
+    }
+  },
   "web_development": {
     "ru": {
       "title": "Веб-разработка",
