@@ -213,8 +213,8 @@ select {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyNjI2MjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxIiBkPSJNMTEuMjUgMTAuNzVMOCAxNC4yNWwtMy4yNS0zLjVtNi41LTUuNUw4IDEuNzVsLTMuMjUgMy41Ii8+PC9zdmc+");
     /* Кастомная SVG стрелка */
     background-repeat: no-repeat;
-    background-position: right 0.75rem center; /* Позиция стрелки */
-    background-size: 1.5em;
+    background-position: right 0.5rem center; /* Позиция стрелки */
+    background-size: 1.2em;
     /* Размер стрелки */
     padding-right: 2.4rem !important;
     /* Отступ справа для стрелки */
