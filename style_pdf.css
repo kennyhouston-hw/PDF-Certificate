@@ -352,34 +352,30 @@ select::-ms-expand {
 /* Styles for segmented control */
 .segment-control {
     display: flex;
-    border: 1px solid #cbd5e0;
-    border-radius: 6px;
+    padding: 2px;
+    border-radius: 8px;
+    border: 1px solid rgba(38,38,38,0.1);
+    background-color: #fff;
     overflow: hidden; /* Important for rounded corners */
     width: fit-content;
     /* Adjust width to content */
 }
 .segment-control button {
-    padding: 4px 12px;
+    padding: 2px 12px;
     border: none;
     background-color: #fff; /* Light background for inactive */
     color: #4a5568;
     /* Darker text for inactive */
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     cursor: pointer;
+    border-radius: 6px;
     transition: background-color 0.2s, color 0.2s;
 }
 .segment-control button.active {
-    background-color: #0A84FF;
+    background-color: #262626;
     /* Blue for active */
     color: white;
-}
-.segment-control button:first-child {
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-}
-.segment-control button:last-child {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
 }
 
 /* Styles for the toggle switch */
