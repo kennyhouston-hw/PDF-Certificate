@@ -117,7 +117,7 @@
   },
   "web_development": {
     "ru": {
-      "title": "Веб-разработка",
+      "title": "Создание сайтов. Front-end разработка",
       "levels": {
         "Начальный уровень": [
           "Введение в HTML",
@@ -126,12 +126,32 @@
           "Flexbox основы",
           "Создание простых веб-страниц"
         ],
+        "Базовый уровень": [
+          "Flexbox для создания гибких контейнеров",
+          "семантика и теги в HTML",
+          "создание сеток CSS GRID",
+          "верстка по шаблону ПО Figma"
+        ],
+        "Средний уровень": [
+          "DOM и JavaScript, программное создание элементов страницы",
+          "события и интерактивность сайта",
+          "отладка с помощью инструментов разработчика",
+          "анонимные функции, this, понятие классов",
+          "планирование событий"
+        ],
         "Продвинутый уровень": [
           "Функции высшего порядка",
           "Асинхронный JavaScript (Promise, Async/Await)",
           "Работа с DOM",
           "Модули ES6",
           "Обработка событий"
+        ],
+        "Дополнительный уровень": [
+          "React и концепцию SPA", 
+          "JSX синтаксис, компоненты, import/export",
+          "систему контроля версий (GitHub)",
+          "FLUX архитектуру",
+          "основы Redux"
         ]
       }
     },
@@ -145,12 +165,94 @@
           "Flexbox basics",
           "Creating simple web pages"
         ],
+        "Basic level": [
+          "Flexbox for creating flexible containers",
+          "semantics and tags in HTML",
+          "creating CSS GRIDs",
+          "layout by Figma template"
+        ],
+        "Intermediate level": [
+          "DOM and JavaScript, programmatic creation of page elements",
+          "events and site interactivity",
+          "debugging with developer tools",
+          "anonymous functions, this, the concept of classes",
+          "event planning"
+        ],
         "Advanced level": [
           "Higher-order functions",
           "Aysnchronous JavaScript (Promise, Async/Await)",
           "Working with DOM",
           "ES6 Modules",
           "Event handling"
+        ],
+        "Additional level": [
+          "Higher-order functions",
+          "Aysnchronous JavaScript (Promise, Async/Await)",
+          "Working with DOM",
+          "ES6 Modules",
+          "Event handling"
+        ]
+      }
+    }
+  },
+  "gamedev_roblox": {
+    "ru": {
+      "title": "Разработка 3D-игр в ROBLOX",
+      "levels": {
+        "Начальный уровень": [
+          "координаты в 3D-пространстве",
+          "основы языка Lua",
+          "команды для перемещения игровых элементов",
+          "переменные, условия",
+          "создание простейших игр в Roblox"
+        ],
+        "Базовый уровень": [
+          "массивы",
+          "создание игрового магазина",
+          "анимации, диалоги",
+          "использование Surface Gui"
+        ],
+        "Средний уровень": [
+          "поиск пути",
+          "использование аудио ресурсов",
+          "сохранение игровых данных",
+          "атрибуты и события"
+        ],
+        "Продвинутый уровень": [
+          "мультиплеер",
+          "формат json",
+          "RemoteEvent",
+          "сопрограммы"
+        ]
+      }
+    },
+    "en": {
+      "title": "Creating 3D games in Roblox",
+      "levels": {
+        "Beginner level": [
+          "coordinates in 3D space",
+          "basics of the Lua language",
+          "commands for moving game elements",
+          "variables, conditions",
+          "creating simple games in Roblox"
+        ],
+        "Basic level": [
+          "arrays",
+          "creating a play market",
+          "animations, dialogues",
+          "using Surface GUI"
+        ],
+        "Intermediate level": [
+          "pathfinding",
+          "use of audio resources",
+          "saving game data",
+          "attributes and events"
+        ],
+        "Advanced level": [
+          "multiplayer",
+          "json format",
+          "remote event",
+          "coroutines"
         ]
       }
     }
