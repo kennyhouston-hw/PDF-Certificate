@@ -355,7 +355,6 @@ select::-ms-expand {
     border: 1px solid rgba(38,38,38,0.1);
     background-color: #fff;
     overflow: hidden; /* Important for rounded corners */
-    width: fit-content;
     /* Adjust width to content */
 }
 .segment-control button {
